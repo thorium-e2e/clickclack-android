@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ClickClack</string>
+    <string name="textview_home_title_1">ClickClack</string>
+    <string name="textview_home_title_2">Introduction</string>
+    <string name="textview_home_intro">Welcome to ClickClack !</string>
+    <string name="textview_home_title_3">Content</string>
+    <string name="textview_home_content">CRUD Clacks</string>
+    <string name="button_home_clacks">Clacks</string>
+    <string name="textview_clacks_title_1">Clacks List</string>
+    <string name="clack_id_label">ID:</string>
+    <string name="clack_id_value">akljfhezmf34534jkhdfg</string>
+    <string name="clack_attrs_value">{\"title\":\"test clack\",\"description\":\"sample clack\"}</string>
+    <string name="btn_clack_update">Update</string>
+    <string name="btn_clack_delete">Delete</string>
+    <string name="clack_attrs_label">Attributes:</string>
+
+</resources>
