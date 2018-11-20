@@ -1,10 +1,8 @@
 package clickclack.apothuaud.com.clickclack.activities;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -12,7 +10,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -20,9 +17,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import clickclack.apothuaud.com.clickclack.R;
+import clickclack.apothuaud.com.clickclack.controllers.ClackAdapter;
+import clickclack.apothuaud.com.clickclack.models.Clack;
 
 public class ClacksListActivity extends AppCompatActivity {
 
@@ -30,10 +28,6 @@ public class ClacksListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clacks_list);
-
-        final List<String> your_array_list = new ArrayList<String>();
-
-        final ListView listView = findViewById(R.id.clacks_list_view);
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -49,24 +43,22 @@ public class ClacksListActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         // Process the JSON
                         try{
+                            ListView listView = findViewById(R.id.clacks_list_view);
+                            ArrayList<Clack> clacks = new ArrayList<>();
+                            ClackAdapter arrayAdapter = new ClackAdapter(
+                                    getContext(),
+                                    clacks );
+                            listView.setAdapter(arrayAdapter);
                             // Loop through the array elements
                             for(int i=0;i<response.length();i++){
                                 // Get current json object
-                                JSONObject clack = response.getJSONObject(i);
+                                JSONObject rclack = response.getJSONObject(i);
                                 // Get the current clack (json object) data
-                                String id = clack.getString("_id");
-                                your_array_list.add(id);
+                                String id = rclack.getString("_id");
+                                String attributes = rclack.toString();
+                                Clack clack = new Clack(id, attributes);
+                                arrayAdapter.add(clack);
                             }
-
-                            // This is the array adapter, it takes the context of the activity as a
-                            // first parameter, the type of list view as a second parameter and your
-                            // array as a third parameter.
-                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                                    getContext(),
-                                    android.R.layout.simple_list_item_1,
-                                    your_array_list );
-
-                            listView.setAdapter(arrayAdapter);
                         }catch (JSONException e){
                             e.printStackTrace();
                         }
