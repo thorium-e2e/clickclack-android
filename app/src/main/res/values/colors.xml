@@ -3,4 +3,17 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorUpdateBackground">#FF8000</color>
+    <color name="colorUpdate">#000000</color>
+    <color name="colorDeleteBackground">#DF0101</color>
+    <color name="colorDelete">#FFFFFF</color>
+    <color name="colorAddBackground">#0404B4</color>
+    <color name="colorAdd">#FFFFFF</color>
+    <color name="colorResetBackground">#DF0101</color>
+    <color name="colorReset">#FFFFFF</color>
+    <color name="colorSubmitBackground">#04B431</color>
+    <color name="colorSubmit">#000000</color>
+    <color name="colorCreateBackground">#0404B4</color>
+    <color name="colorCreate">#FFFFFF</color>
+
 </resources>

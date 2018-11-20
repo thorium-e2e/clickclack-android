@@ -1,62 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:layout_width="0dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_weight="100">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_clack_id_label"
+                android:id="@+id/clack_id_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/clack_id_label" />
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/clack_id_lbl" />
 
             <TextView
-                android:id="@+id/textView_clack_id"
+                android:id="@+id/clack_id_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/clack_id_value" />
-
+                android:layout_weight="1"
+                android:text="@string/clack_id_ex" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_clack_attrs_label"
+                android:id="@+id/clack_attrs_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/clack_attrs_label" />
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/clack_attrs_lbl" />
 
             <TextView
-                android:id="@+id/textView_clack_attrs"
+                android:id="@+id/clack_attrs_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/clack_attrs_value" />
-
+                android:layout_weight="1"
+                android:text="@string/clack_attrs_ex" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,25 +58,24 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_update_clack"
-                style="@android:style/Widget.Material.Light.Button.Borderless"
+                android:id="@+id/clack_btn_update"
+                style="@android:style/Widget.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_clack_update"
-                android:textAllCaps="false"
-                android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                android:textSize="10sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:textColor="@color/colorUpdate"
+                android:background="@color/colorUpdateBackground"
+                android:text="@string/clack_btn_update" />
 
             <Button
-                android:id="@+id/button_delete_clack"
-                style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+                android:id="@+id/clack_btn_delete"
+                style="@android:style/Widget.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/btn_clack_delete"
-                android:textAllCaps="false"
-                android:textSize="10sp"
-                android:textStyle="bold" />
+                android:textColor="@color/colorDelete"
+                android:background="@color/colorDeleteBackground"
+                android:layout_weight="1"
+                android:text="@string/clack_btn_delete" />
         </LinearLayout>
+
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
