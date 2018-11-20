@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,6 +30,8 @@ import clickclack.apothuaud.com.clickclack.adapters.ClackAdapter;
 import clickclack.apothuaud.com.clickclack.models.Clack;
 
 public class ClacksListActivity extends AppCompatActivity {
+
+    private static final String TAG = "ClacksListActivity";
 
     private List<Clack> clackList;
     private RecyclerView.Adapter adapter;

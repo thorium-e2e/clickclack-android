@@ -13,12 +13,12 @@
     <string name="btn_clack_update">Update</string>
     <string name="btn_clack_delete">Delete</string>
     <string name="clack_attrs_label">Attributes:</string>
-    <string name="btn_add_clack">Add</string>
     <string name="clack_id_lbl">ID:</string>
     <string name="clack_id_ex">ab jkczhgfcz3544763ijhdflkjh</string>
     <string name="clack_attrs_lbl">Attributes:</string>
     <string name="clack_attrs_ex">{title:test,description:test,author:test}</string>
     <string name="clack_btn_update">Update</string>
     <string name="clack_btn_delete">Delete</string>
+    <string name="btn_add_clack">Add</string>
 
 </resources>

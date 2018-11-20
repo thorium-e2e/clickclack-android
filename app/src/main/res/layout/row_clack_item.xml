@@ -4,7 +4,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -28,7 +34,13 @@
                 android:text="@string/clack_id_ex" />
         </LinearLayout>
 
-        <LinearLayout
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -52,7 +64,13 @@
                 android:text="@string/clack_attrs_ex" />
         </LinearLayout>
 
-        <LinearLayout
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -67,15 +85,22 @@
                 android:background="@color/colorUpdateBackground"
                 android:text="@string/clack_btn_update" />
 
-            <Button
-                android:id="@+id/clack_btn_delete"
-                style="@android:style/Widget.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorDelete"
-                android:background="@color/colorDeleteBackground"
-                android:layout_weight="1"
-                android:text="@string/clack_btn_delete" />
+        <Button
+            android:id="@+id/clack_btn_delete"
+            style="@android:style/Widget.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorDeleteBackground"
+            android:text="@string/clack_btn_delete"
+            android:textColor="@color/colorDelete" />
         </LinearLayout>
 
-    </LinearLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="visible" />
+
+</LinearLayout>
