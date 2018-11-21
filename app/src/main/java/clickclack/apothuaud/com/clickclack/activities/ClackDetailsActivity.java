@@ -28,6 +28,7 @@ import clickclack.apothuaud.com.clickclack.utils.API;
 public class ClackDetailsActivity extends AppCompatActivity {
 
     private static final String TAG = "Clack Details Activity";
+    private static final int DIALOG_DELAY = 1200;
 
     private Bundle b;
     private Clack clack;
@@ -94,13 +95,7 @@ public class ClackDetailsActivity extends AppCompatActivity {
 
                         // close progress dialog
                         progressDialog.setMessage("Clack data received");
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                //your code here
-                                progressDialog.dismiss();
-                            }
-                        }, 2000);  // 3000 milliseconds
+
                         progressDialog.dismiss();
 
                         // build clack object
@@ -119,13 +114,8 @@ public class ClackDetailsActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // close dialog
                         progressDialog.setMessage("ERROR getting data");
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                //your code here
-                                progressDialog.dismiss();
-                            }
-                        }, 2000);  // 3000 milliseconds
+
+                        progressDialog.dismiss();
 
                         // log error
                         Log.e(TAG, error.toString());
@@ -173,16 +163,19 @@ public class ClackDetailsActivity extends AppCompatActivity {
                         Log.d(TAG, "Response received after delete request");
                         // close dialog
                         progressDialog.setMessage("Clack deleted");
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                //your code here
-                                progressDialog.dismiss();
-                            }
-                        }, 2000);  // 3000 milliseconds
+
+                        progressDialog.dismiss();
                         // start List Activity
-                        Intent intent = new Intent(getContext(), ClacksListActivity.class);
-                        startActivity(intent);
+                        final Intent intent = new Intent(getContext(), ClacksListActivity.class);
+
+                        Handler handler3 = new Handler();
+                        handler3.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startActivity(intent);
+                            }
+                        }, DIALOG_DELAY);
+
                     }
                 },
                 new Response.ErrorListener()
@@ -191,14 +184,21 @@ public class ClackDetailsActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error.
                         // close dialog
-                        progressDialog.setMessage("ERROR sending delete request");
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressDialog.setMessage("ERROR sending delete request");
+                            }
+                        }, DIALOG_DELAY);
+
+                        Handler handler2 = new Handler();
+                        handler2.postDelayed(new Runnable() {
                             public void run() {
                                 //your code here
                                 progressDialog.dismiss();
                             }
-                        }, 2000);  // 3000 milliseconds
+                        }, DIALOG_DELAY);  // 3000 milliseconds
                     }
                 }
         );

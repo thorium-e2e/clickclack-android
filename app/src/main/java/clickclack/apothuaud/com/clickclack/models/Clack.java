@@ -15,7 +15,11 @@ public class Clack {
     }
 
     public String getAttributes() {
-        return attributes;
+
+        return attributes
+                .replace("{", "{\n\t")
+                .replace(",", ",\n\t")
+                .replace("}", "\n}");
     }
 
     public void setAttributes(String attributes) {

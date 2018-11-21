@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -32,6 +33,7 @@ public class ClacksCreateActivity extends AppCompatActivity {
 
     // TAG for logging
     private static final String TAG = "ClacksCreateActivity";
+    private static final int DIALOG_DELAY = 1200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,20 +71,22 @@ public class ClacksCreateActivity extends AppCompatActivity {
     public void onAddFields(View view) {
         Log.i(TAG, "Add fields");
 
-        // get linear layout
         LinearLayout fields = findViewById(R.id.create_clack_fields_layout);
-
-        // create new view from layout
         ClackFieldsView newFields = new ClackFieldsView(this);
-
-        // add view to layout
         fields.addView(newFields.getView());
+
+        Log.d(TAG, "fields added to view");
     }
 
     // Button Submit => post request to api
     public void onSubmit(View view) {
 
         Log.i(TAG, "Submit the form...");
+
+        // progress dialog
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Submit new Clack...");
+        progressDialog.show();
 
         // initiate parameters as a Map
         Map<String, String> formParams = new HashMap<>();
@@ -109,8 +113,14 @@ public class ClacksCreateActivity extends AppCompatActivity {
         // post request to api
         postData(formParams);
 
+        // close dialog
+        progressDialog.setMessage("Submit form...");
+
+        progressDialog.dismiss();
+
         // open List Activity
         Intent intent = new Intent(this, ClacksListActivity.class);
+
         startActivity(intent);
     }
 
@@ -144,14 +154,9 @@ public class ClacksCreateActivity extends AppCompatActivity {
                         Log.d(TAG, "response received after post data");
 
                         // close dialog
-                        progressDialog.setMessage("Clacks received");
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                //your code here
-                                progressDialog.dismiss();
-                            }
-                        }, 2000);  // 3000 milliseconds
+                        progressDialog.setMessage("Clack created");
+
+                        progressDialog.dismiss();
                     }
                 },
                 new Response.ErrorListener()
@@ -164,13 +169,8 @@ public class ClacksCreateActivity extends AppCompatActivity {
 
                         // close dialog
                         progressDialog.setMessage("ERROR getting data");
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                //your code here
-                                progressDialog.dismiss();
-                            }
-                        }, 2000);  // 3000 milliseconds
+
+                        progressDialog.dismiss();
                     }
                 }
         ) {

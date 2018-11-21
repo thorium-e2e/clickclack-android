@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -32,6 +33,7 @@ import clickclack.apothuaud.com.clickclack.utils.API;
 public class ClacksListActivity extends AppCompatActivity {
 
     private static final String TAG = "ClacksListActivity";
+    private static final int DIALOG_DELAY = 1200;
 
     private List<Clack> clackList;
     private RecyclerView.Adapter adapter;
@@ -103,13 +105,8 @@ public class ClacksListActivity extends AppCompatActivity {
                         e.printStackTrace();
                         // close dialog
                         progressDialog.setMessage("ERROR getting data");
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            public void run() {
-                                //your code here
-                                progressDialog.dismiss();
-                            }
-                        }, 2000);  // 3000 milliseconds
+
+                        progressDialog.dismiss();
                     }
                 }
 
@@ -117,21 +114,24 @@ public class ClacksListActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 // close dialog
                 progressDialog.setMessage("Data received");
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        //your code here
-                        progressDialog.dismiss();
-                    }
-                }, 2000);  // 3000 milliseconds
+
+                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volley", error.toString());
+
+                progressDialog.setMessage("Error");
+
                 progressDialog.dismiss();
             }
         });
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                20000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         // add request to request queue
         requestQueue.add(jsonArrayRequest);

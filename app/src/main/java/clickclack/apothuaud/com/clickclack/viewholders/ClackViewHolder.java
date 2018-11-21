@@ -24,6 +24,8 @@ import clickclack.apothuaud.com.clickclack.utils.API;
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class ClackViewHolder extends RecyclerView.ViewHolder {
 
+    private static final int DIALOG_DELAY = 1200;
+
     public TextView clack_id_label, clack_id_value, clack_attrs_label, clack_attrs_value;
     private Button btn_update_clack, btn_delete_clack, btn_details_clack;
 

@@ -7,6 +7,14 @@
     tools:context=".activities.ClackUpdateActivity">
 
     <LinearLayout
+        android:id="@+id/create_clack_fields_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -17,6 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/brown"
+            android:onClick="onReset"
             android:text="@string/reset"
             android:textColor="@color/yellow"
             android:textStyle="bold" />
@@ -28,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
+            android:onClick="onAddFields"
             android:text="@string/add"
             android:textColor="@color/cyan"
             android:textStyle="bold" />
@@ -39,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/colorPrimary"
+            android:onClick="onSubmit"
             android:text="@string/submit"
             android:textColor="@color/amber"
             android:textStyle="bold" />
