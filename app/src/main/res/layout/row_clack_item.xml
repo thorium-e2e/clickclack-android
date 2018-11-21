@@ -15,16 +15,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/clack_id_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="@string/clack_id_lbl" />
+        <TextView
+            android:id="@+id/clack_id_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/clack_id_lbl"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/clack_id_value"
@@ -45,16 +46,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/clack_attrs_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="@string/clack_attrs_lbl" />
+        <TextView
+            android:id="@+id/clack_attrs_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/clack_attrs_lbl"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/clack_attrs_value"
@@ -75,25 +77,41 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/clack_btn_update"
-                style="@android:style/Widget.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/colorUpdate"
-                android:background="@color/colorUpdateBackground"
-                android:text="@string/clack_btn_update" />
-
         <Button
-            android:id="@+id/clack_btn_delete"
-            style="@android:style/Widget.Button"
+            android:id="@+id/clack_details_button"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorDeleteBackground"
+            android:background="@color/indigo"
+            android:text="Details"
+            android:textAllCaps="true"
+            android:textColor="@color/yellow"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/clack_btn_update"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/brown"
+            android:text="@string/clack_btn_update"
+            android:textAllCaps="true"
+            android:textColor="@color/yellow"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/clack_btn_delete"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/pink"
             android:text="@string/clack_btn_delete"
-            android:textColor="@color/colorDelete" />
+            android:textAllCaps="true"
+            android:textColor="@color/yellow"
+            android:textStyle="bold" />
         </LinearLayout>
 
     <View

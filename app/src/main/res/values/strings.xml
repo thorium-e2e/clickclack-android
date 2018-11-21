@@ -20,5 +20,10 @@
     <string name="clack_btn_update">Update</string>
     <string name="clack_btn_delete">Delete</string>
     <string name="btn_add_clack">Add</string>
+    <string name="key">key</string>
+    <string name="reset">Reset</string>
+    <string name="add">Add</string>
+    <string name="submit">Submit</string>
+    <string name="input_value">value</string>
 
 </resources>

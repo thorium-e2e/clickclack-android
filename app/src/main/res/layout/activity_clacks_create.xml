@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,32 +10,35 @@
         android:id="@+id/create_clack_fields_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/create_clack_key"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
+                android:textColorHint="@color/colorPrimary"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
-                android:hint="key"
+                android:hint="@string/key"
                 android:inputType="text" />
 
             <EditText
                 android:id="@+id/create_clack_value"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
+                android:textColorHint="@color/colorPrimaryDark"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
@@ -51,33 +53,39 @@
         android:orientation="horizontal">
 
         <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorResetBackground"
+            android:background="@color/brown"
             android:onClick="onReset"
-            android:text="Reset"
-            android:textColor="@color/colorReset" />
+            android:text="@string/reset"
+            android:textColor="@color/yellow"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button3"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorAddBackground"
+            android:background="@color/colorPrimaryDark"
             android:onClick="onAddFields"
-            android:text="Add"
-            android:textColor="@color/colorAdd" />
+            android:text="@string/add"
+            android:textColor="@color/cyan"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button4"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorSubmitBackground"
+            android:background="@color/colorPrimary"
             android:onClick="onSubmit"
-            android:text="Submit"
-            android:textColor="@color/colorSubmit" />
+            android:text="@string/submit"
+            android:textColor="@color/amber"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

@@ -10,11 +10,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,11 +25,14 @@
         <Button
             android:id="@+id/create_clack_btn"
             android:layout_width="match_parent"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_height="wrap_content"
-            android:background="@color/colorAddBackground"
+            android:background="@color/colorPrimaryDark"
             android:onClick="onAddNew"
             android:text="@string/btn_add_clack"
-            android:textColor="@color/colorAdd" />
+            android:textColor="@color/yellow"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/clack_list"

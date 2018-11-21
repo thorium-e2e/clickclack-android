@@ -3,14 +3,13 @@ package clickclack.apothuaud.com.clickclack.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,6 +27,7 @@ import java.util.List;
 import clickclack.apothuaud.com.clickclack.R;
 import clickclack.apothuaud.com.clickclack.adapters.ClackAdapter;
 import clickclack.apothuaud.com.clickclack.models.Clack;
+import clickclack.apothuaud.com.clickclack.utils.API;
 
 public class ClacksListActivity extends AppCompatActivity {
 
@@ -41,47 +41,89 @@ public class ClacksListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clacks_list);
 
+        Log.i(TAG, "Create Activity");
+
+        // get recycler view
         RecyclerView cList = findViewById(R.id.clack_list);
+        // initiate clacks list
         clackList = new ArrayList<>();
+        // get clack view adapter
         adapter = new ClackAdapter(getApplicationContext(), clackList);
 
+        // get linear layout
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(cList.getContext(), linearLayoutManager.getOrientation());
 
+        // clacks list view settings
         cList.setHasFixedSize(true);
         cList.setLayoutManager(linearLayoutManager);
         cList.addItemDecoration(dividerItemDecoration);
         cList.setAdapter(adapter);
 
+        // get data from api
         getData();
     }
 
     private void getData() {
+        Log.i(TAG, "Request data from API");
+
+        // show progress dialog
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage("Request clacks...");
         progressDialog.show();
 
-        String url = "https://rec-clickclack-api.herokuapp.com/clacks";
+        String url = API.getUri() + "/clacks";
+        Log.d(TAG, "URL: " + url);
+
+        // build request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                Log.i(TAG, "Response received");
+
+                // iterate on response
                 for (int i = 0; i < response.length(); i++) {
                     try {
+
+                        // build json object (clack)
                         JSONObject jsonObject = response.getJSONObject(i);
 
+                        // build clack object
                         Clack clack = new Clack();
                         clack.setId(jsonObject.getString("_id"));
                         clack.setAttributes(jsonObject.toString());
 
+                        // add clack to list
                         clackList.add(clack);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        progressDialog.dismiss();
+                        // close dialog
+                        progressDialog.setMessage("ERROR getting data");
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                //your code here
+                                progressDialog.dismiss();
+                            }
+                        }, 2000);  // 3000 milliseconds
                     }
                 }
+
+                // notify adapter of a change in the list
                 adapter.notifyDataSetChanged();
-                progressDialog.dismiss();
+                // close dialog
+                progressDialog.setMessage("Data received");
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        //your code here
+                        progressDialog.dismiss();
+                    }
+                }, 2000);  // 3000 milliseconds
             }
         }, new Response.ErrorListener() {
             @Override
@@ -90,11 +132,15 @@ public class ClacksListActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        // add request to request queue
         requestQueue.add(jsonArrayRequest);
     }
 
     public void onAddNew(View view) {
+        Log.i(TAG, "Add button");
+
+        // start Create Clack Activity
         Intent intent = new Intent(this, ClacksCreateActivity.class);
         startActivity(intent);
     }
