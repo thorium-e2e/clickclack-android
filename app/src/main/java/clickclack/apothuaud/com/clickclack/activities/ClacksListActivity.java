@@ -33,7 +33,6 @@ import clickclack.apothuaud.com.clickclack.utils.API;
 public class ClacksListActivity extends AppCompatActivity {
 
     private static final String TAG = "ClacksListActivity";
-    private static final int DIALOG_DELAY = 1200;
 
     private List<Clack> clackList;
     private RecyclerView.Adapter adapter;
@@ -47,6 +46,9 @@ public class ClacksListActivity extends AppCompatActivity {
 
         // get recycler view
         RecyclerView cList = findViewById(R.id.clack_list);
+        // change to scroll view
+        // add elements as in fields in update view
+
         // initiate clacks list
         clackList = new ArrayList<>();
         // get clack view adapter
@@ -70,11 +72,6 @@ public class ClacksListActivity extends AppCompatActivity {
     private void getData() {
         Log.i(TAG, "Request data from API");
 
-        // show progress dialog
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Request clacks...");
-        progressDialog.show();
-
         String url = API.getUri() + "/clacks";
         Log.d(TAG, "URL: " + url);
 
@@ -89,7 +86,6 @@ public class ClacksListActivity extends AppCompatActivity {
                 // iterate on response
                 for (int i = 0; i < response.length(); i++) {
                     try {
-
                         // build json object (clack)
                         JSONObject jsonObject = response.getJSONObject(i);
 
@@ -103,28 +99,16 @@ public class ClacksListActivity extends AppCompatActivity {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        // close dialog
-                        progressDialog.setMessage("ERROR getting data");
-
-                        progressDialog.dismiss();
                     }
                 }
 
                 // notify adapter of a change in the list
                 adapter.notifyDataSetChanged();
-                // close dialog
-                progressDialog.setMessage("Data received");
-
-                progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Volley", error.toString());
-
-                progressDialog.setMessage("Error");
-
-                progressDialog.dismiss();
             }
         });
 

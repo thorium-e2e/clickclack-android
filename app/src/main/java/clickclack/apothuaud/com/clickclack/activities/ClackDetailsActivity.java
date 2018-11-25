@@ -28,7 +28,6 @@ import clickclack.apothuaud.com.clickclack.utils.API;
 public class ClackDetailsActivity extends AppCompatActivity {
 
     private static final String TAG = "Clack Details Activity";
-    private static final int DIALOG_DELAY = 1200;
 
     private Bundle b;
     private Clack clack;
@@ -72,11 +71,6 @@ public class ClackDetailsActivity extends AppCompatActivity {
 
         Log.i(TAG, "Getting clack data from API");
 
-        // progress dialog
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading Clack data...");
-        progressDialog.show();
-
         // build request queue
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -93,11 +87,6 @@ public class ClackDetailsActivity extends AppCompatActivity {
 
                         Log.d(TAG, "Response received");
 
-                        // close progress dialog
-                        progressDialog.setMessage("Clack data received");
-
-                        progressDialog.dismiss();
-
                         // build clack object
                         clack = new Clack();
                         clack.setId(b.getString("clackId"));
@@ -112,11 +101,6 @@ public class ClackDetailsActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // close dialog
-                        progressDialog.setMessage("ERROR getting data");
-
-                        progressDialog.dismiss();
-
                         // log error
                         Log.e(TAG, error.toString());
                     }
@@ -139,11 +123,6 @@ public class ClackDetailsActivity extends AppCompatActivity {
     public void onDelete(View view) {
         Log.i(TAG, "Delete Clack");
 
-        // progress dialog
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Delete Clack...");
-        progressDialog.show();
-
         // get clack id
         String id = b.getString("clackId");
         Log.i(TAG, "Clack ID: " + id);
@@ -161,20 +140,11 @@ public class ClackDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, "Response received after delete request");
-                        // close dialog
-                        progressDialog.setMessage("Clack deleted");
 
-                        progressDialog.dismiss();
                         // start List Activity
                         final Intent intent = new Intent(getContext(), ClacksListActivity.class);
 
-                        Handler handler3 = new Handler();
-                        handler3.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                startActivity(intent);
-                            }
-                        }, DIALOG_DELAY);
+                        startActivity(intent);
 
                     }
                 },
@@ -182,23 +152,7 @@ public class ClackDetailsActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // error.
-                        // close dialog
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                progressDialog.setMessage("ERROR sending delete request");
-                            }
-                        }, DIALOG_DELAY);
 
-                        Handler handler2 = new Handler();
-                        handler2.postDelayed(new Runnable() {
-                            public void run() {
-                                //your code here
-                                progressDialog.dismiss();
-                            }
-                        }, DIALOG_DELAY);  // 3000 milliseconds
                     }
                 }
         );

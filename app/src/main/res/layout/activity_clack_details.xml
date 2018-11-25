@@ -100,8 +100,8 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
-            style="@style/Widget.AppCompat.Button.Borderless"
             android:id="@+id/clack_details_btn_update"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

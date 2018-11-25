@@ -36,7 +36,6 @@ import clickclack.apothuaud.com.clickclack.viewholders.ClackFieldsView;
 public class ClackUpdateActivity extends AppCompatActivity {
 
     private static final String TAG = "Clack Update Activity";
-    private static final int DIALOG_DELAY = 1200;
 
     private Clack clack;
     private Bundle b;
@@ -63,11 +62,6 @@ public class ClackUpdateActivity extends AppCompatActivity {
 
         Log.i(TAG, "Getting clack data from API");
 
-        // progress dialog
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading Clack data...");
-        progressDialog.show();
-
         // build request queue
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -83,11 +77,6 @@ public class ClackUpdateActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         Log.d(TAG, "Response received");
-
-                        // close progress dialog
-                        progressDialog.setMessage("Clack data received");
-
-                        progressDialog.dismiss();
 
                         // build clack object
                         clack.setAttributes(response.toString());
@@ -116,11 +105,6 @@ public class ClackUpdateActivity extends AppCompatActivity {
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // close dialog
-                        progressDialog.setMessage("ERROR getting data");
-
-                        progressDialog.dismiss();
-
                         // log error
                         Log.e(TAG, error.toString());
                     }
@@ -175,11 +159,6 @@ public class ClackUpdateActivity extends AppCompatActivity {
 
         Log.i(TAG, "Submit the form...");
 
-        // progress dialog
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Submit updated Clack...");
-        progressDialog.show();
-
         // initiate parameters as a Map
         Map<String, String> formParams = new HashMap<>();
 
@@ -205,11 +184,6 @@ public class ClackUpdateActivity extends AppCompatActivity {
         // post request to api
         putData(formParams);
 
-        // close dialog
-        progressDialog.setMessage("Submit form...");
-
-        progressDialog.dismiss();
-
         // open List Activity
         Intent intent = new Intent(this, ClacksListActivity.class);
 
@@ -217,11 +191,6 @@ public class ClackUpdateActivity extends AppCompatActivity {
     }
 
     private void putData(final Map<String, String> params) {
-
-        // shox progress dialog
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Sending form data...");
-        progressDialog.show();
 
         Log.i(TAG, "put form data");
 
@@ -244,11 +213,6 @@ public class ClackUpdateActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         Log.d(TAG, "response received after put data");
-
-                        // close dialog
-                        progressDialog.setMessage("Clack updated");
-
-                        progressDialog.dismiss();
                     }
                 },
                 new Response.ErrorListener()
@@ -258,11 +222,6 @@ public class ClackUpdateActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.e(TAG, error.toString());
-
-                        // close dialog
-                        progressDialog.setMessage("ERROR getting data");
-
-                        progressDialog.dismiss();
                     }
                 }
         ) {

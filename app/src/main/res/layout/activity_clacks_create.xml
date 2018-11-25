@@ -23,13 +23,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:textColorHint="@color/colorPrimary"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:hint="@string/key"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textColorHint="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/create_clack_value"
@@ -53,8 +53,8 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/clack-create-btn-reset"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/brown"
@@ -64,7 +64,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/clack-create-btn-add"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/clack-create-btn-submit"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

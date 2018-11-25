@@ -33,7 +33,6 @@ public class ClacksCreateActivity extends AppCompatActivity {
 
     // TAG for logging
     private static final String TAG = "ClacksCreateActivity";
-    private static final int DIALOG_DELAY = 1200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +82,6 @@ public class ClacksCreateActivity extends AppCompatActivity {
 
         Log.i(TAG, "Submit the form...");
 
-        // progress dialog
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Submit new Clack...");
-        progressDialog.show();
-
         // initiate parameters as a Map
         Map<String, String> formParams = new HashMap<>();
 
@@ -113,11 +107,6 @@ public class ClacksCreateActivity extends AppCompatActivity {
         // post request to api
         postData(formParams);
 
-        // close dialog
-        progressDialog.setMessage("Submit form...");
-
-        progressDialog.dismiss();
-
         // open List Activity
         Intent intent = new Intent(this, ClacksListActivity.class);
 
@@ -125,11 +114,6 @@ public class ClacksCreateActivity extends AppCompatActivity {
     }
 
     private void postData(final Map<String, String> params) {
-
-        // shox progress dialog
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Sending form data...");
-        progressDialog.show();
 
         Log.i(TAG, "post form data");
 
@@ -152,11 +136,6 @@ public class ClacksCreateActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // response
                         Log.d(TAG, "response received after post data");
-
-                        // close dialog
-                        progressDialog.setMessage("Clack created");
-
-                        progressDialog.dismiss();
                     }
                 },
                 new Response.ErrorListener()
@@ -166,11 +145,6 @@ public class ClacksCreateActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.e(TAG, error.toString());
-
-                        // close dialog
-                        progressDialog.setMessage("ERROR getting data");
-
-                        progressDialog.dismiss();
                     }
                 }
         ) {

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    android:id="@+id/clack_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <View
         android:id="@+id/divider2"
@@ -11,9 +12,9 @@
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/clack_id_label"
@@ -27,13 +28,13 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/clack_id_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/clack_id_ex" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/clack_id_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/clack_id_ex" />
+    </LinearLayout>
 
     <View
         android:id="@+id/divider3"
@@ -42,9 +43,9 @@
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/clack_attrs_label"
@@ -58,13 +59,13 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/clack_attrs_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/clack_attrs_ex" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/clack_attrs_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/clack_attrs_ex" />
+    </LinearLayout>
 
     <View
         android:id="@+id/divider4"
@@ -73,9 +74,10 @@
         android:background="?android:attr/listDivider" />
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        android:id="@+id/clack_item_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/clack_details_button"
@@ -112,7 +114,7 @@
             android:textAllCaps="true"
             android:textColor="@color/yellow"
             android:textStyle="bold" />
-        </LinearLayout>
+    </LinearLayout>
 
     <View
         android:id="@+id/divider"
