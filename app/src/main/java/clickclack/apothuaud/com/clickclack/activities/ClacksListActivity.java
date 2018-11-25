@@ -1,15 +1,12 @@
 package clickclack.apothuaud.com.clickclack.activities;
 
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
@@ -26,16 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import clickclack.apothuaud.com.clickclack.R;
-import clickclack.apothuaud.com.clickclack.adapters.ClackAdapter;
 import clickclack.apothuaud.com.clickclack.models.Clack;
 import clickclack.apothuaud.com.clickclack.utils.API;
+import clickclack.apothuaud.com.clickclack.viewholders.ClackView;
 
 public class ClacksListActivity extends AppCompatActivity {
 
     private static final String TAG = "ClacksListActivity";
 
     private List<Clack> clackList;
-    private RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,29 +40,25 @@ public class ClacksListActivity extends AppCompatActivity {
 
         Log.i(TAG, "Create Activity");
 
-        // get recycler view
-        RecyclerView cList = findViewById(R.id.clack_list);
-        // change to scroll view
-        // add elements as in fields in update view
-
         // initiate clacks list
         clackList = new ArrayList<>();
-        // get clack view adapter
-        adapter = new ClackAdapter(getApplicationContext(), clackList);
-
-        // get linear layout
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(cList.getContext(), linearLayoutManager.getOrientation());
-
-        // clacks list view settings
-        cList.setHasFixedSize(true);
-        cList.setLayoutManager(linearLayoutManager);
-        cList.addItemDecoration(dividerItemDecoration);
-        cList.setAdapter(adapter);
 
         // get data from api
         getData();
+    }
+
+    private void setView() {
+        for (int i = 0; i < clackList.size(); i++) {
+            Log.i(TAG, "Adding new clack item view");
+            LinearLayout cList = findViewById(R.id.clack_list);
+            // init clack view
+            ClackView newView = new ClackView(this);
+            // set clack view
+            newView.clack_id_value.setText(clackList.get(i).getId());
+            newView.clack_attrs_value.setText(clackList.get(i).getAttributes());
+            // add to scroll view
+            cList.addView(newView.getView());
+        }
     }
 
     private void getData() {
@@ -102,8 +94,8 @@ public class ClacksListActivity extends AppCompatActivity {
                     }
                 }
 
-                // notify adapter of a change in the list
-                adapter.notifyDataSetChanged();
+                // add clack items in view
+                setView();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -127,5 +119,9 @@ public class ClacksListActivity extends AppCompatActivity {
         // start Create Clack Activity
         Intent intent = new Intent(this, ClacksCreateActivity.class);
         startActivity(intent);
+    }
+
+    public Context getContext() {
+        return this;
     }
 }
